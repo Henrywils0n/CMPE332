@@ -15,7 +15,7 @@
 
     <div class="nav">
         <ul>
-            <li><a href="index.php">Home</a></li>
+            <li><a href="restaurant.php">Home</a></li>
             <li><a href="pastOrders.php">Past Orders</a></li>
             <li><a href="orderInfo.php">Order Information</a></li>
             <li><a class="active" href="customer.php">Customers</a></li>
@@ -37,11 +37,9 @@
         </form>
     </div>
 
-    <div class=wrapper>
         <?php
             include "assets/php/customer.php";
         ?>
-    </div>
 </header>
 </body>
 </html>

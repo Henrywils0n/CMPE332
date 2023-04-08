@@ -8,8 +8,13 @@
   box-sizing: border-box;
 }
 
+#form label {
+  display:block;
+  position:relative;
+}
+
 #form select {
-  width: 50%;
+  width: 70%;
   padding: 10px 10px;
   margin: 4px 0;
   display: inline-block;

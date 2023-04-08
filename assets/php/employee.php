@@ -4,7 +4,7 @@ if(!empty($_REQUEST["ID"])) {
     $result = $connection->query("SELECT day, start_time, end_time
     FROM employee E JOIN schedules S ON E.ID = S.employee_id
     WHERE E.ID =".$_REQUEST["ID"]."");
-
+        echo "<div class=wrapper>";
         if($result->rowCount()==0){
             echo "<h3> No Shifts </h3>";
         }
@@ -31,4 +31,5 @@ if(!empty($_REQUEST["ID"])) {
             }
             echo "</table>";
         }
+        echo "</div>";
 }

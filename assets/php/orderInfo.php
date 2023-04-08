@@ -2,6 +2,7 @@
 include "connectdb.php";
 
 if(!empty($_GET["date"])) {
+    echo "<div class=wrapper>";
     $result = $connection->query("SELECT C.first_name, C.last_name, O.price, O.restaurant_id, O.tip, E.first_name as eFName, E.last_name as eLName
                                     FROM orders O
                                     JOIN employee E ON O.delivered_by = E.ID
@@ -45,6 +46,7 @@ if(!empty($_GET["date"])) {
             echo"</tr>";
         }
         echo "</table>";
+        echo "</div>";
     }
 }
 ?>

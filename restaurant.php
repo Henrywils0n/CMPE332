@@ -11,15 +11,15 @@
 <header class="header">
     <h1><strong> Wilson's Restaurant INC. </strong></h1>
 
-    <nav class="nav">
+    <div class="nav">
         <ul>
-            <li><a class="active" href="index.php">Home</a></li>
+            <li><a class="active" href="restaurant.php">Home</a></li>
             <li><a href="pastOrders.php">Past Orders</a></li>
             <li><a href="orderInfo.php">Order Information</a></li>
             <li><a href="customer.php">Customers</a></li>
             <li><a href="employee.php">Employee</a></li>
         </ul>
-    </nav>
+    </div>
 </header>
 
 <div class="underHeader">

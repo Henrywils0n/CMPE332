@@ -1,8 +1,8 @@
 .header {
-    position: static;
+    position: relative;
 }
 .nav {
-    position: static;
+    position: relative;
 }
 .nav ul {
     list-style-type: none;
@@ -10,6 +10,7 @@
     padding: 0;
     overflow: hidden;
     background-color: #333;
+    position: static;
     width: 100%;
 }
 

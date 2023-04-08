@@ -19,7 +19,7 @@
 
         <nav class="nav">
             <ul>
-                <li><a href="index.php">Home</a></li>
+                <li><a href="restaurant.php">Home</a></li>
                 <li><a href="pastOrders.php">Past Orders</a></li>
                 <li><a class="active" href="orderInfo.php">Order Information</a></li>
                 <li><a href="customer.php">Customers</a></li>
@@ -37,11 +37,10 @@
       </form>
     </div><!--end log form -->
 
-    <div class=wrapper>
-        <?php
-            include "assets/php/orderInfo.php";
-        ?>
-    </div>
+    <?php
+        include "assets/php/orderInfo.php";
+    ?>
+
 
 
 

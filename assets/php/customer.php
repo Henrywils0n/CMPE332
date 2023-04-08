@@ -1,7 +1,7 @@
 <?php
 include "connectdb.php";
 if (!empty($_REQUEST["email"])) {
-
+    echo "<div class=wrapper>";
     $statement = $connection->prepare("INSERT INTO customer
                                  (email, first_name, last_name, street, city, postal_code, phone_number)
                                  VALUES (:email, :first_name, :last_name, :street, :city, :postal_code, :phone_number)"
@@ -15,22 +15,23 @@ if (!empty($_REQUEST["email"])) {
     $statement->bindParam(":postal_code",$_REQUEST["postal_code"]);
     $statement->bindParam(":phone_number", $_REQUEST["phone_number"]);
 
-    if ($statement->execute()) {
-     echo "<h3>Customer Created</h3>";
-    } else {
-     echo "<h3 style=\"color: red\">Unable to create customer. Check values</h3>";
-     die();
+    try {
+      $statement->execute();
+    } catch(Exception $e) {
+      echo "<h3 style=\"color: red\">Unable to create customer. Check values</h3>";
     }
-
 
     $statement = $connection->prepare("INSERT INTO account
                                     VALUES ('".$_REQUEST["email"]."', '5.00', '".date("Y-m-d")."')"
                                  );
-    if ($statement->execute()) {
-     echo "<h3>Account Created</h3>";
-    } else {
-     echo "<h3>Unable to create account</h3>";
+
+    try {
+      $statement->execute();
+    } catch(Exception $e) {
+      echo "<h3 style=\"color: red\">Unable to create account</h3>";
     }
+
+    echo "</div>";
 
 }
 ?>

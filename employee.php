@@ -15,7 +15,7 @@
 
     <div class="nav">
         <ul>
-            <li><a href="index.php">Home</a></li>
+            <li><a href="restaurant.php">Home</a></li>
             <li><a href="pastOrders.php">Past Orders</a></li>
             <li><a href="orderInfo.php">Order Information</a></li>
             <li><a href="customer.php">Customers</a></li>
@@ -29,10 +29,10 @@
         include "assets/php/dropdown.php";
     ?>
 </div>
-<div class=wrapper>
+
     <?php
         include "assets/php/employee.php";
     ?>
-</div>
+
 </body>
 </html>
