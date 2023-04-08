@@ -17,6 +17,7 @@ if (!empty($_REQUEST["email"])) {
 
     try {
       $statement->execute();
+      echo "<h3>Customer Created</h3>";
     } catch(Exception $e) {
       echo "<h3 style=\"color: red\">Unable to create customer. Check values</h3>";
     }
@@ -27,6 +28,7 @@ if (!empty($_REQUEST["email"])) {
 
     try {
       $statement->execute();
+      echo "<h3>Account Created</h3>";
     } catch(Exception $e) {
       echo "<h3 style=\"color: red\">Unable to create account</h3>";
     }
