@@ -1,0 +1,26 @@
+body {
+  background-color: lightblue;
+  font-family: Tahoma, serif;
+}
+
+.underHeader {
+  background: #0428aa;
+  text-align: center;
+  color: aliceblue;
+  flex: auto;
+  padding: 10px 10px 10px 10px;
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.wrapper {
+  background: #0428aa;
+  text-align: center;
+  color: aliceblue;
+  flex: auto;
+  padding: 10px 10px 10px 10px;
+  position: relative;
+  margin: 10px 10px 10px;
+}

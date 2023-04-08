@@ -1,0 +1,46 @@
+#form input[type=text], input[type=email] {
+  width: 70%;
+  padding: 10px 10px;
+  margin: 4px 0;
+  display: inline-block;
+  border: 1px solid #8ebce0;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#form label {
+  display:block;
+  position:relative;
+}
+
+#form select {
+  width: 70%;
+  padding: 10px 10px;
+  margin: 4px 0;
+  display: inline-block;
+  border: 1px solid #8ebce0;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#form button[type="submit"] {
+  width: 70%;
+  background-color: #26b4d5;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#form button[type="submit"]:hover {
+  width: 70%;
+  background-color: #28748f;
+}
+
+#form div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}

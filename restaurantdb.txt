@@ -1,0 +1,194 @@
+drop database if exists restaurantDB;
+create database restaurantDB;
+
+create table restaurant(
+    name varchar(50) primary key,
+	street varchar(50),
+    city varchar(50),
+    postal_code char(6)
+);
+
+create table menu(
+    restaurant varchar(50),
+    food varchar(50),
+	price int not null,
+    foreign key(restaurant) references restaurant(name) on delete cascade,
+	primary key(restaurant,food)
+);
+
+create table employee(
+	ID int primary key,
+    restaurant varchar(50),
+    first_name varchar(30),
+    last_name varchar(30),
+    email varchar(50),
+    foreign key(restaurant) references restaurant(name)
+);
+
+create table chef(
+	chefID int primary key,
+	foreign key(chefID) references employee(ID) on delete cascade
+);
+
+create table delivery(
+	deliveryID int primary key,
+	foreign key(deliveryID) references employee(ID) on delete cascade
+);
+
+create table manager(
+	managerID int primary key,
+	foreign key(managerID) references employee(ID) on delete cascade
+);
+
+create table service(
+	serverID int primary key,
+	foreign key(serverID) references employee(ID) on delete cascade
+);
+
+
+create table certifications(
+	employee_id int,
+	certification varchar(50),
+	foreign key(employee_id) references chef(chefID) on delete cascade,
+	primary key(employee_id, certification)
+);
+
+create table schedules(
+	day varchar(10),
+	employee_id int,
+	start_time varchar(5), -- military time 'XX:XX'
+	end_time varchar(5), -- military time 'XX:XX'
+    foreign key(employee_id) references employee(ID) on delete cascade,
+	primary key(day, employee_id)
+);
+
+create table customer(
+	email varchar(50) primary key,
+	first_name varchar(50),
+	last_name varchar(50),
+    street varchar(50),
+    city varchar(50),
+    postal_code char(6), -- 'X#X#X#'
+    phone_number char(10) -- '##########'
+);
+
+create table account(
+	customer_account varchar(50),
+    credit varchar(8),
+    date varchar(10), -- 'DD-MM-YYYY'
+    foreign key(customer_account) references customer(email) on delete cascade,
+	primary key(customer_account, credit, date));
+
+create table orders(
+	order_id int primary key,
+    restaurant_id varchar(50),
+    customer_id varchar(50),
+    order_date date,
+    order_time varchar(5), -- military time XX:XX
+    delivery_time varchar(5), -- military time XX:XX
+    delivered_by int,
+    price int,
+    tip varchar(6),
+    foreign key(restaurant_id) references restaurant(name),
+    foreign key(customer_id) references customer(email),
+    foreign key(delivered_by) references delivery(deliveryID) on delete set null
+);
+
+create table relationships(
+	employee int,
+	customer varchar(50),
+	relationship varchar(50),
+	foreign key(employee) references employee(ID) on delete cascade,
+	foreign key(customer) references customer(email) on delete cascade,
+	primary key(employee, customer, relationship)
+);
+
+insert into restaurant values
+( 'Burgers', 'Princess st', 'Kingston', 'B5O8U9'),
+( 'Pizza', 'Albert st', 'Kingston', 'K4O8I9'),
+( 'Fries', 'King st', 'Kingston', 'K5P7K1'),
+( 'Chicken', 'Main st', 'Kingston', 'K1R3H6');
+
+insert into menu values
+('Burgers', 'cheeseburger', 18),
+('Burgers', 'hamburger', 17),
+('Pizza', 'cheese pizza', 22),
+('Pizza', 'pepperoni pizza', 20),
+('Fries', 'french fries', 9),
+('chicken', 'fried chicken', 15);
+
+insert into employee values
+( 86397693, 'Burgers', 'John', 'Smith', 'johnsmith@gmail.com'),
+( 48686988, 'Burgers', 'Kevin', 'Doe', 'kevindoe@gmial.com'),
+( 79631837, 'Pizza', 'Henry', 'Wilson', 'henrywilson@gmial.com'),
+( 18759276, 'Pizza', 'Oscar', 'Brown', 'oscarbrown@gmial.com'),
+( 98987737, 'Fries', 'Mile', 'Drag', 'miledrag@gmial.com'),
+( 26386393, 'Fries', 'Euan', 'Brydie', 'euanbrydie@gmial.com'),
+( 46582582, 'Chicken', 'Nick', 'Levy', 'nicklevy@gmial.com');
+
+insert into chef values
+(86397693),
+(18759276),
+(46582582);
+
+insert into delivery values
+(79631837),
+(98987737),
+(26386393);
+
+insert into manager values
+(18759276);
+
+insert into service values
+(79631837),
+(26386393);
+
+insert into certifications values
+(86397693, 'masterchef'),
+(86397693, 'dishwasher'),
+(18759276, 'sous chef'),
+(18759276, 'dishwasher'),
+(46582582, 'masterchef'),
+(46582582, 'dishwasher');
+
+insert into schedules values
+('Monday', 46582582, '10:50', '12:30' ),
+('Monday', 26386393, '10:50', '19:30' ),
+('Tuesday', 46582582, '11:50', '17:30' ),
+('Monday', 98987737, '9:50', '17:30' ),
+('Wednesday', 98987737, '8:50', '10:30' ),
+('Monday', 48686988, '10:50', '20:30' ),
+('Wednesday', 46582582, '10:50', '12:30' ),
+('Tuesday', 26386393, '1:50', '10:30' ),
+('Thursday', 46582582, '8:50', '17:30' ),
+('Thursday', 98987737, '10:50', '16:30' ),
+('Friday', 98987737, '18:50', '23:30' ),
+('Friday', 48686988, '7:50', '18:30' );
+
+insert into customer values
+('nate@gmail.com', 'Nate', 'Ferguson', 'Earl st', 'Kingston','K7Y5G9', '6573849274'),
+('jer@gmail.com', 'Jeremy', 'Harper', 'Earl st', 'Kingston','K9T6G6', '9023356453'),
+('shiv@gmail.com', 'Shiv', 'Sood', 'Johnson st', 'Kingston','K8I8G6', '9737466453'),
+('Haley@gmail.com', 'Haley', 'Harper', 'Frontenac st', 'Kingston','K8T7J6', '9023356453'),
+('drew@gmail.com', 'Drew', 'Manning', 'Frontenac st', 'Kingston','K6L7D6', '9029256462'),
+('arch@gmail.com', 'Arch', 'Manning', 'Albert st', 'Kingston','G6F8J6', '9023871053');
+
+INSERT INTO account VALUES
+('Haley@gmail.com', '45.11', '2023-02-03'),
+('shiv@gmail.com', '99.99', '2023-02-04'),
+('jer@gmail.com', '48.11', '2023-02-05');
+
+INSERT INTO orders VALUES
+(1, 'Burgers', 'shiv@gmail.com','2022-10-12', '18:12', '18:30', 26386393, 78, '3.25'),
+(2, 'Pizza', 'Haley@gmail.com','2022-10-12', '16:12', '16:30', 26386393, 73, '5.00'),
+(3, 'Fries', 'jer@gmail.com','2022-10-12', '12:12', '13:30', 98987737, 27, '10.00'),
+(4, 'Pizza', 'shiv@gmail.com','2022-12-19', '19:12', '19:30', 98987737, 50, '5.00'),
+(5, 'Pizza', 'Haley@gmail.com','2023-01-03', '16:12', '16:30', 26386393, 73, '5.00'),
+(6, 'Fries', 'jer@gmail.com','2022-10-12', '16:12', '16:30', 26386393, 73, '5.00'),
+(7, 'Burgers', 'Haley@gmail.com','2023-01-12', '16:12', '16:30', 98987737, 73, '5.00'),
+(8, 'Pizza', 'shiv@gmail.com','2022-12-28', '16:12', '16:30', 26386393, 89, '10.00');
+
+insert into relationships values
+(98987737, 'nate@gmail.com', 'very friendly'),
+(26386393, 'jer@gmail.com', 'married'),
+(98987737, 'shiv@gmail.com', 'secret lovers');
